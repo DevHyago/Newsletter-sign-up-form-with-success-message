@@ -5,12 +5,13 @@ const form = document.querySelector('#submit-newsletter');
 const successContent = document.querySelector('#success-content');
 const successButton = successContent.querySelector('button');
 
-successButton.addEventListener('click', () => {
-  hiddenSuccessScreen(formContent, successContent);
-})
-
 const email = form.querySelector('#email');
 email.addEventListener('input', () => hiddenErrorMessage(email))
+
+successButton.addEventListener('click', () => {
+  hiddenSuccessScreen(formContent, successContent, email);
+})
+
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -46,7 +47,8 @@ function showSuccessScreen(divFormContent, divSuccessContent, email){
   divSuccessContent.style.display = 'block';
 }
 
-function hiddenSuccessScreen(divFormContent, divSuccessContent){
+function hiddenSuccessScreen(divFormContent, divSuccessContent, input){
   divFormContent.style.display = 'flex';
   divSuccessContent.style.display = 'none';
+  input.value = '';
 }
